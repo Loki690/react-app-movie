@@ -26,11 +26,11 @@ const Person = (props) => {
 
 const App = () => {
 
-  const [searchTerm, setSearchTerm] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
 
   const searchMovies = async (title) => {
-    const response = await fetch(`${API_URL}&s{title}`);
+    const response = await fetch(`${API_URL}&s=${title}`);
     const data = await response.json();
 
     setMovies(data.Search);
@@ -54,8 +54,7 @@ const App = () => {
       </div>
 
       {
-        movies?.length > 0 
-        ? (
+        movies?.length > 0 ? (
           <div className='container'>
           {
             movies.map((movie) => (
@@ -63,7 +62,7 @@ const App = () => {
             ))
           }
 
-            // <MovieCard movie1={movie1} />
+            {/* // <MovieCard movie={movie} /> */}
 
           </div>
         ) : (
@@ -74,9 +73,6 @@ const App = () => {
           </div>
         )
       }
-
-
-
 
     </div>
   );
